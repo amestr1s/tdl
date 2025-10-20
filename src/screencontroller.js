@@ -1,3 +1,3 @@
-import { addTodoToProject, deleteTodoInProj, changeTodoPrioInProj, changeTodoStatusInProj } from "./coordinator";
-import { addProject, deleteProject, getProjects } from "./projectManager";
+import { addTodoToProject, deleteTodoInProj, changeTodoPrioInProj, changeTodoStatusInProj, addProject, deleteProject, getProjects } from "./coordinator";
+
 

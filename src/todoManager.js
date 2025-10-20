@@ -1,6 +1,6 @@
 import { Todo } from "./todoMaker";
 
-const todoLib = [];
+let todoLib = [];
 
 function addTodo(title, projectId, description, dueDate, priority, status) {
     let todo = new Todo(title, projectId, description, new Date(dueDate), priority, status);

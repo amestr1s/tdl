@@ -1,7 +1,7 @@
 import { Project } from "./projectMaker";
 import { Todo } from "./todoMaker";
 
-const projectLib = [];
+let projectLib = [];
 
 function addProject(title) {
     projectLib.push(new Project(title));

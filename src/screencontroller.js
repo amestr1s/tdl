@@ -1,6 +1,6 @@
 import { addTodoToProject, deleteTodoInProj, changeTodoPrioInProj, changeTodoStatusInProj, addProject, deleteProject, getProjects, getTodos } from "./coordinator";
 
-const projectTodoDialog = document.querySelector("#projectTodoDialog");
+const todoDetailsDialog = document.querySelector("#todoDetailsDialog");
 const titleP = document.querySelector(".title");
 const descriptionP = document.querySelector(".description");
 const dueDateP = document.querySelector(".dueDate");
@@ -48,7 +48,7 @@ function renderProjects() {
                 descriptionP.textContent = `Description: ${todoObj.description}`;
                 dueDateP.textContent = `Due by: ${todoObj.dueDate.toLocaleDateString()}`;
                 projectNameP.textContent = `Belongs to: ${projObj.title}`;
-                projectTodoDialog.showModal();
+                todoDetailsDialog.showModal();
 
             })
             todo.classList.add(todoObj.id);
@@ -184,9 +184,9 @@ function setupProjectForm() {
 });
 }
 
-function setupTodoProjectModal() {
+function setupTodoDetailsModal() {
     closeTodoProjectBtn.addEventListener("click", (event) => {
-        projectTodoDialog.close();
+        todoDetailsDialog.close();
         titleP.textContent = "";
         descriptionP.textContent = "";
         dueDateP.textContent = "";
@@ -202,7 +202,7 @@ function init() {
     renderProjects();
     setupTodoForm();
     setupProjectForm();
-    setupTodoProjectModal();
+    setupTodoDetailsModal();
     return;
 }
 

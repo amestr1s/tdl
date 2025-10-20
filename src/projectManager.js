@@ -19,6 +19,9 @@ function deleteProject(id) {
 
 function getProjects() {
     const projectLibCopy = [...projectLib];
+    for (const element of projectLibCopy) {
+    element.todoLib.sort( (a, b) => a.dueDate - b.dueDate );
+    }
     return projectLibCopy;
 }
 

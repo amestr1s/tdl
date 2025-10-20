@@ -1,4 +1,4 @@
-import { addTodoToProject, deleteTodoInProj, changeTodoPrioInProj, changeTodoStatusInProj, addProject, deleteProject, getProjects, getTodos } from "./coordinator";
+import { addTodoToProject, deleteTodoInProj, changeTodoPrioInProj, changeTodoStatusInProj, addProject, deleteProject, getProjects, getProjectById, getTodos } from "./coordinator";
 
 const todoDetailsDialog = document.querySelector("#todoDetailsDialog");
 const titleP = document.querySelector(".title");
@@ -33,6 +33,7 @@ function renderProjects() {
         projectDelBtn.addEventListener("click", (event) => {
             deleteProject(projObj.id);
             renderProjects();
+            renderContent();
         });
         projectDiv.appendChild(projectDelBtn);
         const option = document.createElement("option");
@@ -78,6 +79,7 @@ function renderProjects() {
             changePrioSel.addEventListener("change", (event) => {
                 changeTodoPrioInProj(todoObj.projectId, todoObj.id, event.target.value);
                 renderProjects();
+                renderContent();
             });
             todoDiv.appendChild(changePrioSel);
             const statusChkbx = document.createElement("input");
@@ -92,10 +94,12 @@ function renderProjects() {
                     changeTodoStatusInProj(todoObj.projectId, todoObj.id, "Undone");
                     statusChkbx.checked = false;
                     renderProjects();
+                    renderContent();
                 } else if (event.target.checked === true) {
                     changeTodoStatusInProj(todoObj.projectId, todoObj.id, "Done");
                     statusChkbx.checked = true;
                     renderProjects();
+                    renderContent();
                 }
             });
             todoDiv.appendChild(statusChkbx);
@@ -104,6 +108,7 @@ function renderProjects() {
             delTodoBtn.addEventListener("click", (event) => {
                 deleteTodoInProj(todoObj.projectId, todoObj.id);
                 renderProjects();
+                renderContent();
             })
             todoDiv.appendChild(delTodoBtn);
             todo.appendChild(todoDiv);
@@ -115,6 +120,35 @@ function renderProjects() {
     }
     sidebarContainer.appendChild(projectUl);
     return;
+}
+
+function renderContent() {
+    const content = document.querySelector(".content");
+    const todoList = getTodos();
+    while (content.hasChildNodes()) {
+        content.removeChild(content.firstChild);
+    }
+    for (const todoObj of todoList) {
+        const correctProject = getProjectById(todoObj.projectId);
+        const mainTodo = document.createElement("div");
+        mainTodo.classList.add("mainTodo");
+        mainTodo.addEventListener("click", (event) => {
+            titleP.textContent = `Title: ${todoObj.title}`;
+            descriptionP.textContent = `Description: ${todoObj.description}`;
+            dueDateP.textContent = `Due by: ${todoObj.dueDate.toLocaleDateString()}`;
+            projectNameP.textContent = `Belongs to: ${correctProject.title}`;
+            todoDetailsDialog.showModal();
+        })
+        const mainTodoTitle = document.createElement("h2");
+        mainTodoTitle.classList.add(todoObj.priority);
+        mainTodoTitle.textContent = todoObj.title;
+        mainTodo.appendChild(mainTodoTitle);
+        const mainTodoDueDate = document.createElement("h3");
+        mainTodoDueDate.classList.add(todoObj.priority);
+        mainTodoDueDate.textContent = todoObj.dueDate.toLocaleDateString();
+        mainTodo.appendChild(mainTodoDueDate);
+        content.appendChild(mainTodo);
+    }
 }
 
 function setupTodoForm() {
@@ -146,6 +180,7 @@ function setupTodoForm() {
   
         addTodoToProject(titleInput.value, projectInput.value, descriptionInput.value, dueDateInput.value, priorityInput.value, "Undone");
         renderProjects();
+        renderContent();
         todoDialog.close(); 
         todoForm.reset();
         
@@ -178,6 +213,7 @@ function setupProjectForm() {
   
         addProject(titleInput.value);
         renderProjects();
+        renderContent();
         projectDialog.close(); 
         projectForm.reset();
         
@@ -200,6 +236,7 @@ function init() {
         addProject("default");
     } 
     renderProjects();
+    renderContent();
     setupTodoForm();
     setupProjectForm();
     setupTodoDetailsModal();

@@ -60,10 +60,29 @@ function renderProjects() {
             changePrioSel.appendChild(low);
             changePrioSel.value = todoObj.priority;
             changePrioSel.addEventListener("change", (event) => {
-            changeTodoPrioInProj(todoObj.projectId, todoObj.id, event.target.value);
-            renderProjects();
+                changeTodoPrioInProj(todoObj.projectId, todoObj.id, event.target.value);
+                renderProjects();
             });
             todoDiv.appendChild(changePrioSel);
+            const statusChkbx = document.createElement("input");
+            statusChkbx.type = "checkbox";
+            if (todoObj.status === "Undone") {
+                statusChkbx.checked = false;
+            } else if (todoObj.status === "Done") {
+                statusChkbx.checked = true;
+            }
+            statusChkbx.addEventListener("change", (event) => {
+                if (event.target.checked === false) {
+                    changeTodoStatusInProj(todoObj.projectId, todoObj.id, "Undone")
+                    statusChkbx.checked = false;
+                    renderProjects();
+                } else if (event.target.checked === true) {
+                    changeTodoStatusInProj(todoObj.projectId, todoObj.id, "Done");
+                    statusChkbx.checked = true;
+                    renderProjects();
+                }
+            });
+            todoDiv.appendChild(statusChkbx);
             todo.appendChild(todoDiv);
             projectTodoUl.appendChild(todo);
         }

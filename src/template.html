@@ -8,7 +8,13 @@
 <body>
     <header>Welcome to the jungle</header>
     <div class="mid">
-        <div class="sidebar"></div>
+        <div class="sidebar">
+            <div>
+                <p>Projects:</p>
+                <button id="projectCreator">Create Project</button>
+            </div>
+            <div class="sidebarContainer"></div>
+        </div>
         <div class="main">
             <div class="creator">
                 <button id="todoCreator">Create Todo</button>
@@ -54,7 +60,7 @@
         <form id="projectForm">
             <div class="titleInput">
                 <label for="title">Title:</label>
-                <input type="text" name="title" id="title" placeholder="Do the dishes">
+                <input type="text" name="title" id="projectTitle" placeholder="House">
             </div>
             <div class="projectFormBtns">
                 <button id="cancelProjectBtn" value="cancel" formmethod="dialog">Cancel</button>

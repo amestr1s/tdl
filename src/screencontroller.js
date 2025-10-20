@@ -2,10 +2,10 @@ import { addTodoToProject, deleteTodoInProj, changeTodoPrioInProj, changeTodoSta
 
 function renderProjects() {
     const projectList = getProjects();
-    const sidebar = document.querySelector(".sidebar");
+    const sidebarContainer = document.querySelector(".sidebarContainer");
     const projectInput = document.querySelector("#project");
-    while (sidebar.hasChildNodes()) {
-        sidebar.removeChild(sidebar.firstChild);
+    while (sidebarContainer.hasChildNodes()) {
+        sidebarContainer.removeChild(sidebarContainer.firstChild);
     }
     while (projectInput.hasChildNodes()) {
         projectInput.removeChild(projectInput.firstChild);
@@ -15,7 +15,18 @@ function renderProjects() {
     for (const projObj of projectList) {
         const project = document.createElement("li");
         project.classList.add(projObj.id);
-        project.textContent = `${projObj.title}`;
+        const projectDiv = document.createElement("div");
+        projectDiv.classList.add("projectContainer");
+        const projectP = document.createElement("p");
+        projectP.textContent = `${projObj.title}`;
+        projectDiv.appendChild(projectP);
+        const projectDelBtn = document.createElement("button");
+        projectDelBtn.textContent = "Delete Project";
+        projectDelBtn.addEventListener("click", (event) => {
+            deleteProject(projObj.id);
+            renderProjects();
+        });
+        projectDiv.appendChild(projectDelBtn);
         const option = document.createElement("option");
         option.textContent = `${projObj.title}`;
         option.value = projObj.id;
@@ -29,10 +40,11 @@ function renderProjects() {
             projectTodoUl.appendChild(todo);
 
         }
+        project.appendChild(projectDiv);
         project.appendChild(projectTodoUl);
         projectUl.appendChild(project);
     }
-    sidebar.appendChild(projectUl);
+    sidebarContainer.appendChild(projectUl);
     return;
 }
 
@@ -71,6 +83,37 @@ function setupTodoForm() {
 });
 }
 
+function setupProjectForm() {
+    const projectCreator = document.querySelector("#projectCreator");
+    const projectDialog = document.querySelector("#projectDialog");
+    const confirmProjectBtn = document.querySelector("#confirmProjectBtn");
+    const titleInput = document.querySelector("#projectTitle");
+    const cancelProjectBtn = document.querySelector("#cancelProjectBtn");
+    const projectForm = document.querySelector("#projectForm");
+    
+
+    projectCreator.addEventListener("click", () => {
+        projectDialog.showModal();
+    });
+
+    cancelProjectBtn.addEventListener("click", (event) => {
+  
+        projectDialog.close();
+        projectForm.reset();
+        renderProjects();
+    });
+
+    confirmProjectBtn.addEventListener("click", (event) => {
+  
+        event.preventDefault();
+  
+        addProject(titleInput.value);
+        renderProjects();
+        projectDialog.close(); 
+        projectForm.reset();
+        
+});
+}
 
 
 function init() {
@@ -80,6 +123,7 @@ function init() {
     } 
     renderProjects();
     setupTodoForm();
+    setupProjectForm();
     return;
 }
 

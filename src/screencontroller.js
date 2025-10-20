@@ -1,9 +1,17 @@
 import { addTodoToProject, deleteTodoInProj, changeTodoPrioInProj, changeTodoStatusInProj, addProject, deleteProject, getProjects, getTodos } from "./coordinator";
 
+const projectTodoDialog = document.querySelector("#projectTodoDialog");
+const titleP = document.querySelector(".title");
+const descriptionP = document.querySelector(".description");
+const dueDateP = document.querySelector(".dueDate");
+const projectNameP = document.querySelector(".projectName");
+const closeTodoProjectBtn = document.querySelector("#closeTodoProjectBtn");
+
 function renderProjects() {
     const projectList = getProjects();
     const sidebarContainer = document.querySelector(".sidebarContainer");
     const projectInput = document.querySelector("#project");
+    
     while (sidebarContainer.hasChildNodes()) {
         sidebarContainer.removeChild(sidebarContainer.firstChild);
     }
@@ -35,6 +43,14 @@ function renderProjects() {
         const projectTodoList = projObj.todoLib;
         for (const todoObj of projectTodoList) {
             const todo = document.createElement("li");
+            todo.addEventListener("click", (event) => {
+                titleP.textContent = `Title: ${todoObj.title}`;
+                descriptionP.textContent = `Description: ${todoObj.description}`;
+                dueDateP.textContent = `Due by: ${todoObj.dueDate.toLocaleDateString()}`;
+                projectNameP.textContent = `Belongs to: ${projObj.title}`;
+                projectTodoDialog.showModal();
+
+            })
             todo.classList.add(todoObj.id);
             const todoDiv = document.createElement("div");
             const todoP = document.createElement("p");
@@ -73,7 +89,7 @@ function renderProjects() {
             }
             statusChkbx.addEventListener("change", (event) => {
                 if (event.target.checked === false) {
-                    changeTodoStatusInProj(todoObj.projectId, todoObj.id, "Undone")
+                    changeTodoStatusInProj(todoObj.projectId, todoObj.id, "Undone");
                     statusChkbx.checked = false;
                     renderProjects();
                 } else if (event.target.checked === true) {
@@ -83,6 +99,13 @@ function renderProjects() {
                 }
             });
             todoDiv.appendChild(statusChkbx);
+            const delTodoBtn = document.createElement("button");
+            delTodoBtn.textContent = "Delete Todo";
+            delTodoBtn.addEventListener("click", (event) => {
+                deleteTodoInProj(todoObj.projectId, todoObj.id);
+                renderProjects();
+            })
+            todoDiv.appendChild(delTodoBtn);
             todo.appendChild(todoDiv);
             projectTodoUl.appendChild(todo);
         }
@@ -161,6 +184,15 @@ function setupProjectForm() {
 });
 }
 
+function setupTodoProjectModal() {
+    closeTodoProjectBtn.addEventListener("click", (event) => {
+        projectTodoDialog.close();
+        titleP.textContent = "";
+        descriptionP.textContent = "";
+        dueDateP.textContent = "";
+        projectNameP.textContent = "";
+    })
+}
 
 function init() {
     const projectList = getProjects();
@@ -170,6 +202,7 @@ function init() {
     renderProjects();
     setupTodoForm();
     setupProjectForm();
+    setupTodoProjectModal();
     return;
 }
 

@@ -6,8 +6,59 @@
     <title>To Do List</title>
 </head>
 <body>
-    <header>
-        <button id="create">Create </button>
-    </header>
+    <header>Welcome to the jungle</header>
+    <div class="mid">
+        <div class="sidebar"></div>
+        <div class="content"></div>
+    </div>
+    <footer>Goodbye blue skies</footer>
+    <dialog id="todoDialog">
+        <form id="todoForm">
+            <div class="titleInput">
+                <label for="title">Title:</label>
+                <input type="text" name="title" id="title" placeholder="Do the dishes">
+            </div>
+            <div class="descriptionInput">
+                <label for="description">Description:</label>
+                <input type="text" name="description" id="description" placeholder="Splash,soap and the rest">
+            </div>
+            <div class="dueDateInput">
+                <label for="dueDate">Due Date:</label>
+                <input type="date" name="dueDate" id="dueDate">
+            </div>
+            <div class='prioritySelection'>
+                <label for='priority'>Priority</label>
+                <select id='priority' name='priority'>
+                    <option value='1' selected>Critical</option>
+                    <option value='2'>High</option>
+                    <option value='3'>Moderate</option>
+                    <option value='4'>Low</option>
+                </select>
+            </div>
+            <div class='projectSelection'>
+                <label for='project'>Project</label>
+                <select id='project' name='project'>
+                    <option value='1' selected>Default</option>
+                </select>
+            </div>
+            <div class="formBtns">
+                <button id="cancelTodoBtn" value="cancel" formmethod="dialog">Cancel</button>
+                <button id="confirmTodoBtn" value="default">Confirm</button>
+            </div>
+        </form>
+    </dialog>
+    <dialog id="projectDialog">
+        <form id="projectForm">
+            <div class="titleInput">
+                <label for="title">Title:</label>
+                <input type="text" name="title" id="title" placeholder="Do the dishes">
+            </div>
+            <div class="projectFormBtns">
+                <button id="cancelProjectBtn" value="cancel" formmethod="dialog">Cancel</button>
+                <button id="confirmProjectBtn" value="default">Confirm</button>
+            </div>
+            
+        </form>
+    </dialog>
 </body>
 </html>

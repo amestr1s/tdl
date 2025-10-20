@@ -36,9 +36,32 @@ function renderProjects() {
         for (const todoObj of projectTodoList) {
             const todo = document.createElement("li");
             todo.classList.add(todoObj.id);
-            todo.textContent = `${todoObj.title} Due by: ${todoObj.dueDate.toLocaleDateString()} Status: ${todoObj.status} `;
+            const todoDiv = document.createElement("div");
+            const todoP = document.createElement("p");
+            todoP.classList.add(todoObj.priority);
+            todoP.textContent = `${todoObj.title} due by: ${todoObj.dueDate.toLocaleDateString()} Status: ${todoObj.status} `;
+            todoDiv.appendChild(todoP);
+            const changePrioSel = document.createElement("select");
+            const critical = document.createElement("option");
+            critical.value = "1";
+            critical.textContent = "Critical";
+            changePrioSel.appendChild(critical);
+            const high = document.createElement("option");
+            high.value = "2";
+            high.textContent = "High";
+            changePrioSel.appendChild(high);
+            const moderate = document.createElement("option");
+            moderate.value = "3";
+            moderate.textContent = "Moderate";
+            changePrioSel.appendChild(moderate);
+            const low = document.createElement("option");
+            low.value = "4";
+            low.textContent = "Low";
+            changePrioSel.value = todoObj.priority;
+            changePrioSel.appendChild(low);
+            todoDiv.appendChild(changePrioSel);
+            todo.appendChild(todoDiv);
             projectTodoUl.appendChild(todo);
-
         }
         project.appendChild(projectDiv);
         project.appendChild(projectTodoUl);

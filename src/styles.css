@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'Iceberg';
+    src: url(font/Iceberg-Regular.woff2) format('woff2'),
+        url(font/Iceberg-Regular.woff) format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Iceberg, serif;
+}
+
+body {
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.mid {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.creator {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: 1fr;
+    gap: 15px;
+    justify-items: center;
+    align-items: flex-start;
+}

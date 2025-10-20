@@ -46,4 +46,4 @@ function deleteTodoInProj(projectId, id) {
     return;
 }
 
-export {addTodoToProject, changeTodoPrioInProj, changeTodoStatusInProj, deleteTodoInProj, addProject, deleteProject, getProjects};
+export {addTodoToProject, changeTodoPrioInProj, changeTodoStatusInProj, deleteTodoInProj, addProject, deleteProject, getProjects, getTodos};

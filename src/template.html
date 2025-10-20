@@ -11,7 +11,7 @@
         <div class="sidebar"></div>
         <div class="main">
             <div class="creator">
-                <button>Create Todo</button>
+                <button id="todoCreator">Create Todo</button>
             </div>
             <div class="content"></div>
         </div>
@@ -41,10 +41,8 @@
                 </select>
             </div>
             <div class='projectSelection'>
-                <label for='project'>Project</label>
-                <select id='project' name='project'>
-                    <option value='1' selected>Default</option>
-                </select>
+                <label for='project'>Select Project</label>
+                <select id='project' name='project'></select>
             </div>
             <div class="formBtns">
                 <button id="cancelTodoBtn" value="cancel" formmethod="dialog">Cancel</button>

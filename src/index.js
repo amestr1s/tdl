@@ -1,1 +1,3 @@
-console.log("Goodbye blue skies")
+import { init } from "./screencontroller";
+
+init();

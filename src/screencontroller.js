@@ -44,17 +44,16 @@ function renderProjects() {
         const projectTodoList = projObj.todoLib;
         for (const todoObj of projectTodoList) {
             const todo = document.createElement("li");
-            todo.addEventListener("click", (event) => {
+            todo.classList.add(todoObj.id);
+            const todoDiv = document.createElement("div");
+            const todoP = document.createElement("p");
+            todoP.addEventListener("click", (event) => {
                 titleP.textContent = `Title: ${todoObj.title}`;
                 descriptionP.textContent = `Description: ${todoObj.description}`;
                 dueDateP.textContent = `Due by: ${todoObj.dueDate.toLocaleDateString()}`;
                 projectNameP.textContent = `Belongs to: ${projObj.title}`;
                 todoDetailsDialog.showModal();
-
             })
-            todo.classList.add(todoObj.id);
-            const todoDiv = document.createElement("div");
-            const todoP = document.createElement("p");
             todoP.classList.add(todoObj.priority);
             todoP.textContent = `${todoObj.title} due by: ${todoObj.dueDate.toLocaleDateString()} Status: ${todoObj.status} `;
             todoDiv.appendChild(todoP);

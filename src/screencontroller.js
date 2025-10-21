@@ -230,6 +230,15 @@ function setupTodoDetailsModal() {
     })
 }
 
+function setupStorageDeletion() {
+    const clearStorageBtn = document.querySelector("#clearStorageBtn");
+    clearStorageBtn.addEventListener("click", (event) => {
+        localStorage.clear();
+        location.reload();
+    })
+    return;
+}
+
 function init() {
     const projectList = getProjects();
     if (projectList.length === 0) {
@@ -240,6 +249,7 @@ function init() {
     setupTodoForm();
     setupProjectForm();
     setupTodoDetailsModal();
+    setupStorageDeletion();
     return;
 }
 

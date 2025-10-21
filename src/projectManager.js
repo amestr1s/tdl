@@ -1,10 +1,25 @@
 import { Project } from "./projectMaker";
 import { Todo } from "./todoMaker";
 
-let projectLib = [];
+let projectLib;
+
+if (localStorage.getItem("projectLibSaved") === null) {
+    projectLib = [];
+    } else {
+    projectLib = JSON.parse(localStorage.getItem("projectLibSaved"));
+    for (const projObj of projectLib) {
+        const projTodoObjs = projObj.todoLib;
+        for (const todoObj of projTodoObjs) {
+            todoObj.dueDate = new Date(todoObj.dueDate);
+        }
+    }
+    }
+
+
 
 function addProject(title) {
     projectLib.push(new Project(title));
+    _saveProjectLib();
     return;
 }
 
@@ -14,6 +29,7 @@ function deleteProject(id) {
     if (index !== -1) {
         projectLib.splice(index, 1);
     }
+    _saveProjectLib();
     return;
 }
 
@@ -33,8 +49,13 @@ function getProjectById(id) {
 
 function setProjects(projectLibCopy) {
     projectLib = [...projectLibCopy];
+    _saveProjectLib();
     return;
 }
 
+function _saveProjectLib() {
+    localStorage.setItem("projectLibSaved", JSON.stringify(projectLib));
+    return;
+}
 
 export {addProject, deleteProject, getProjects, getProjectById, setProjects};

@@ -34,6 +34,7 @@ body {
 
 .sidebar {
     width: 50%;
+    margin: 4px;
     border: 2px solid green;
     padding-left: 20px;
     overflow-x: auto;
@@ -74,6 +75,33 @@ body {
     
 }
 
+.projectList li ul li div div:first-child {
+    display: flex;
+    justify-content: space-around;
+    gap: 8px;
+}
+
+.projectList li ul li div div p:first-child {
+    width: 10ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.projectList li ul li div div p:nth-child(2) {
+    width: 15ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.projectList li ul li div div p:nth-child(3) {
+    width: 14ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .projectList li ul li {
     margin-top: 4px;
     margin-bottom: 4px;
@@ -102,6 +130,7 @@ body {
     width: 50%;
     border: 2px solid blue;
     overflow-y: auto;
+    margin: 4px;
 }
 
 
@@ -123,6 +152,19 @@ body {
 
 .mainTodo {
     border: 2px solid orange;
+    width: 15ch;
+    padding: 0.5em;
+}
+
+.mainTodo h3 {
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.mainTodo h4 {
+    text-align: center;
 }
 
 .projectContainer button,

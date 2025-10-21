@@ -46,17 +46,25 @@ function renderProjects() {
             const todo = document.createElement("li");
             todo.classList.add(todoObj.id);
             const todoDiv = document.createElement("div");
-            const todoP = document.createElement("p");
-            todoP.addEventListener("click", (event) => {
+            const todoInfoDiv = document.createElement("div");
+            todoInfoDiv.addEventListener("click", (event) => {
                 titleP.textContent = `Title: ${todoObj.title}`;
                 descriptionP.textContent = `Description: ${todoObj.description}`;
                 dueDateP.textContent = `Due by: ${todoObj.dueDate.toLocaleDateString()}`;
                 projectNameP.textContent = `Belongs to: ${projObj.title}`;
                 todoDetailsDialog.showModal();
             })
-            todoP.classList.add(todoObj.priority);
-            todoP.textContent = `${todoObj.title} due by: ${todoObj.dueDate.toLocaleDateString()} Status: ${todoObj.status} `;
-            todoDiv.appendChild(todoP);
+            todoInfoDiv.classList.add(todoObj.priority);
+            const todoInfoTitle = document.createElement("p")
+            todoInfoTitle.textContent = `${todoObj.title}`;
+            todoInfoDiv.appendChild(todoInfoTitle);
+            const todoInfoDueDate = document.createElement("p")
+            todoInfoDueDate.textContent = `Due: ${todoObj.dueDate.toLocaleDateString()}`;
+            todoInfoDiv.appendChild(todoInfoDueDate);
+            const todoInfoStatus = document.createElement("p")
+            todoInfoStatus.textContent = `Status: ${todoObj.status}`;
+            todoInfoDiv.appendChild(todoInfoStatus);
+            todoDiv.appendChild(todoInfoDiv);
             const todoControls = document.createElement("div");
             todoControls.classList.add("todoControls")
             const changePrioSel = document.createElement("select");

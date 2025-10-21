@@ -23,24 +23,125 @@ body {
 }
 
 .mid {
-    width: 100%;
+    width: min(95%, 1800px);
+    height: auto;
+    min-height: 90vh;
     display: flex;
     justify-content: flex-start;
+    border: 2px solid red;
 }
 
-.creator {
-    width: 40%;
+.sidebar {
+    width: 50%;
+    border: 2px solid green;
+    padding-left: 20px;
+}
+
+.sidebar>div:first-child {
     display: flex;
-    flex-direction: column;
     justify-content: flex-start;
+    align-items: center;
+    gap: 18px;
+}
+
+
+
+.projectList li ul {
+    padding-left: 12px;
+}
+
+.projectContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+}
+
+.projectList li ul li div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.todoControls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    margin-right: 8px;
+}
+
+.todoControls select {
+
+}
+
+.todoControls input {
+    width: 20px;
+    height: 20px;
+}
+
+
+.main {
+    width: 50%;
+    border: 2px solid blue;
+}
+
+
+.creator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .content {
-    width: 60%;
+    border: 2px solid purple;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     grid-template-rows: 1fr;
     gap: 15px;
     justify-items: center;
     align-items: flex-start;
+}
+
+.mainTodo {
+    border: 2px solid orange;
+}
+
+.projectContainer button,
+.todoControls button {
+    background: url(./img/delete.svg);
+    width: 22px;
+    height: 22px;
+    border: transparent;
+}
+
+.creator>button {
+    background: url(./img/plus.svg);
+    width: 48px;
+    height: 48px;
+    border: transparent;
+}
+
+.sidebar>div>button {
+    background: url(./img/plus.svg);
+    width: 22px;
+    height: 22px;
+    border: transparent;
+}
+
+.critical {
+    color: red;
+}
+
+.high {
+    color: orangered;
+}
+
+.moderate {
+    color: orange;
+}
+
+.low {
+    color: green;
 }

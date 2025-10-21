@@ -29,7 +29,7 @@ function renderProjects() {
         projectP.textContent = `${projObj.title}`;
         projectDiv.appendChild(projectP);
         const projectDelBtn = document.createElement("button");
-        projectDelBtn.textContent = "Delete Project";
+        // projectDelBtn.textContent = "Delete Project";
         projectDelBtn.addEventListener("click", (event) => {
             deleteProject(projObj.id);
             renderProjects();
@@ -57,6 +57,8 @@ function renderProjects() {
             todoP.classList.add(todoObj.priority);
             todoP.textContent = `${todoObj.title} due by: ${todoObj.dueDate.toLocaleDateString()} Status: ${todoObj.status} `;
             todoDiv.appendChild(todoP);
+            const todoControls = document.createElement("div");
+            todoControls.classList.add("todoControls")
             const changePrioSel = document.createElement("select");
             const critical = document.createElement("option");
             critical.value = "critical";
@@ -80,7 +82,7 @@ function renderProjects() {
                 renderProjects();
                 renderContent();
             });
-            todoDiv.appendChild(changePrioSel);
+            todoControls.appendChild(changePrioSel);
             const statusChkbx = document.createElement("input");
             statusChkbx.type = "checkbox";
             if (todoObj.status === "Undone") {
@@ -101,15 +103,16 @@ function renderProjects() {
                     renderContent();
                 }
             });
-            todoDiv.appendChild(statusChkbx);
+            todoControls.appendChild(statusChkbx);
             const delTodoBtn = document.createElement("button");
-            delTodoBtn.textContent = "Delete Todo";
+            // delTodoBtn.textContent = "Delete Todo";
             delTodoBtn.addEventListener("click", (event) => {
                 deleteTodoInProj(todoObj.projectId, todoObj.id);
                 renderProjects();
                 renderContent();
             })
-            todoDiv.appendChild(delTodoBtn);
+            todoControls.appendChild(delTodoBtn);
+            todoDiv.appendChild(todoControls);
             todo.appendChild(todoDiv);
             projectTodoUl.appendChild(todo);
         }
@@ -138,11 +141,11 @@ function renderContent() {
             projectNameP.textContent = `Belongs to: ${correctProject.title}`;
             todoDetailsDialog.showModal();
         })
-        const mainTodoTitle = document.createElement("h2");
+        const mainTodoTitle = document.createElement("h3");
         mainTodoTitle.classList.add(todoObj.priority);
         mainTodoTitle.textContent = todoObj.title;
         mainTodo.appendChild(mainTodoTitle);
-        const mainTodoDueDate = document.createElement("h3");
+        const mainTodoDueDate = document.createElement("h4");
         mainTodoDueDate.classList.add(todoObj.priority);
         mainTodoDueDate.textContent = todoObj.dueDate.toLocaleDateString();
         mainTodo.appendChild(mainTodoDueDate);

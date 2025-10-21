@@ -77,8 +77,8 @@ body {
 
 .projectList li ul li div div:first-child {
     display: flex;
-    justify-content: space-around;
-    gap: 8px;
+    justify-content: space-between;
+    gap: 24px;
 }
 
 .projectList li ul li div div p:first-child {

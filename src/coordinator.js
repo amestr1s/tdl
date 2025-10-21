@@ -23,6 +23,7 @@ function changeTodoPrioInProj(projectId, id, newPriority) {
     if (index !== -1) {
     correctProject.todoLib.at(index).priority = newPriority;
     }
+    setProjects(getProjects());
     return;
 }
 
@@ -33,6 +34,7 @@ function changeTodoStatusInProj(projectId, id, newStatus) {
     if (index !== -1) {
     correctProject.todoLib.at(index).status = newStatus;
     }
+    setProjects(getProjects());
     return;
 }
 
@@ -43,6 +45,7 @@ function deleteTodoInProj(projectId, id) {
     if (index !== -1) {
     correctProject.todoLib.splice(index, 1);
     }
+    setProjects(getProjects());
     return;
 }
 

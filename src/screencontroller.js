@@ -151,6 +151,11 @@ function renderContent() {
             projectNameP.textContent = `Belongs to: ${correctProject.title}`;
             todoDetailsDialog.showModal();
         })
+        if (todoObj.status === "Done") {
+            mainTodo.classList.add("strike");
+        } else if (todoObj.status === "Undone") {
+            mainTodo.classList.remove("strike");
+        }
         const mainTodoTitle = document.createElement("h3");
         mainTodoTitle.classList.add(todoObj.priority);
         mainTodoTitle.textContent = todoObj.title;

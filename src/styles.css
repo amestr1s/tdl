@@ -108,6 +108,13 @@ body {
     margin-right: 4px;
 }
 
+.strike {
+    text-decoration: line-through;
+    text-decoration-color: black;
+    text-decoration-style: solid;
+    text-decoration-thickness: 3px;
+}
+
 .todoControls {
     display: flex;
     justify-content: flex-end;

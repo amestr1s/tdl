@@ -95,8 +95,10 @@ function renderProjects() {
             statusChkbx.type = "checkbox";
             if (todoObj.status === "Undone") {
                 statusChkbx.checked = false;
+                todoInfoDiv.classList.remove("strike");
             } else if (todoObj.status === "Done") {
                 statusChkbx.checked = true;
+                todoInfoDiv.classList.add("strike");
             }
             statusChkbx.addEventListener("change", (event) => {
                 if (event.target.checked === false) {

@@ -11,6 +11,7 @@
     padding: 0;
     margin: 0;
     font-family: Iceberg, serif;
+    font-weight: 600;
 }
 
 body {
@@ -20,6 +21,27 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    background-image: url(img/postit.png);
+    background-size: cover;          
+    background-repeat: no-repeat;    
+    background-position: center;     
+    background-attachment: fixed;
+}
+
+dialog {
+  transition:
+    display 0.3s allow-discrete,
+    overlay 0.3s allow-discrete,
+    opacity 0.3s;
+  opacity: 0;
+  
+  &[open] {
+    opacity: 1;
+	  
+    @starting-style {
+      opacity: 0;
+    }
+  }
 }
 
 .mid {
@@ -28,18 +50,22 @@ body {
     min-height: 90vh;
     display: flex;
     justify-content: center;
-    border: 2px solid red;
     gap: 4px;
 }
 
 .sidebar {
     width: 50%;
     margin: 4px;
-    border: 2px solid green;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
     padding-left: 20px;
     overflow-x: auto;
     overflow-y: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+
 
 .sidebar>div:first-child {
     display: flex;
@@ -52,6 +78,18 @@ body {
     font-size: 1.2rem;
 }
 
+.projectList>li {
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    /* margin: 5px; */
+    padding: 8px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-right: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
 
 .projectList li ul {
     padding-left: 12px;
@@ -106,7 +144,18 @@ body {
     margin-top: 4px;
     margin-bottom: 4px;
     margin-right: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+
+.projectList li ul li:hover {
+    transform: scale(1.02);
+}
+
 
 .strike {
     text-decoration: line-through;
@@ -124,20 +173,32 @@ body {
 }
 
 .todoControls select {
-
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    outline: none;
 }
+
 
 .todoControls input {
     width: 20px;
     height: 20px;
+    color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    outline: none;
 }
 
 
 .main {
     width: 50%;
-    border: 2px solid blue;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
     overflow-y: auto;
     margin: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -148,7 +209,6 @@ body {
 }
 
 .content {
-    border: 2px solid purple;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     grid-template-rows: 1fr;
@@ -158,9 +218,22 @@ body {
 }
 
 .mainTodo {
-    border: 2px solid orange;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
     width: 15ch;
     padding: 0.5em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.mainTodo:hover {
+    transform: scale(1.10);
+}
+
+.mainTodo:active {
+    transform: scale(0.9);
 }
 
 .mainTodo h3 {
@@ -180,6 +253,17 @@ body {
     width: 22px;
     height: 22px;
     border: transparent;
+    transition: transform 0.2s ease;
+}
+
+.projectContainer button:hover,
+.todoControls button:hover {
+    transform: scale(1.20);
+}
+
+.projectContainer button:active,
+.todoControls button:active {
+    transform: scale(0.90);
 }
 
 .creator>button {
@@ -187,6 +271,15 @@ body {
     width: 42px;
     height: 42px;
     border: transparent;
+    transition: transform 0.2s ease;
+}
+
+.creator>button:hover {
+    transform: scale(1.30);
+}
+
+.creator>button:active {
+    transform: scale(0.8);
 }
 
 .sidebar>div>button {
@@ -194,6 +287,52 @@ body {
     width: 22px;
     height: 22px;
     border: transparent;
+    transition: transform 0.2s ease;
+}
+
+.sidebar>div>button:hover {
+    transform: scale(1.30);
+}
+
+.sidebar>div>button:active {
+    transform: scale(0.8);
+}
+
+footer>button {
+    font-size: 1.05rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+}
+
+footer>button:hover {
+    transform: scale(1.15);
+}
+
+footer>button:active {
+    transform: scale(0.9);
+
+}
+
+footer>div {
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
 }
 
 .critical {

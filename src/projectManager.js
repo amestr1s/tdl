@@ -36,7 +36,19 @@ function deleteProject(id) {
 function getProjects() {
     const projectLibCopy = [...projectLib];
     for (const element of projectLibCopy) {
-    element.todoLib.sort( (a, b) => a.dueDate - b.dueDate );
+    element.todoLib.sort( (a, b) => {
+    // Rule 1: Handle "Done" items
+    if (a.status === "Done" && b.status !== "Done") {
+        return 1; // a comes after b
+    }
+    if (a.status !== "Done" && b.status === "Done") {
+        return -1; // a comes before b
+    }
+
+    // Rule 2: If statuses are the same (both Done or both Undone),
+    // sort by due date (earliest first)
+    return a.dueDate - b.dueDate;
+});
     }
     return projectLibCopy;
 }

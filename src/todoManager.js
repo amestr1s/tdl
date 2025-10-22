@@ -49,7 +49,19 @@ function changeStatus(id, newStatus) {
 
 function sortTodos() {
     const todoLibCopy = [...todoLib];
-    todoLibCopy.sort( (a, b) => a.dueDate - b.dueDate );
+    todoLibCopy.sort( (a, b) => {
+    // Rule 1: Handle "Done" items
+    if (a.status === "Done" && b.status !== "Done") {
+        return 1; // a comes after b
+    }
+    if (a.status !== "Done" && b.status === "Done") {
+        return -1; // a comes before b
+    }
+
+    // Rule 2: If statuses are the same (both Done or both Undone),
+    // sort by due date (earliest first)
+    return a.dueDate - b.dueDate;
+});
     return todoLibCopy;
 }
 

@@ -44,6 +44,76 @@ dialog {
   }
 }
 
+dialog::backdrop {
+  backdrop-filter: blur(10px);
+}
+
+dialog {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 20%;
+    min-width: 15rem;
+    margin: auto;
+    padding: 12px;
+}
+
+.projectTodoFormBtn>button,
+.projectFormBtns>button,
+.formBtns>button {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2px 4px 2px 4px;
+    font-size: 1rem;
+}
+
+#todoForm,
+#projectForm,
+#projectTodoForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+    gap: 6px;
+}
+
+.titleInput,
+.descriptionInput,
+.dueDateInput,
+.prioritySelection,
+.projectSelection,
+.formBtns,
+.projectFormBtns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+}
+
+.titleInput>input,
+.descriptionInput>input,
+.dueDateInput>input {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.prioritySelection>select,
+.projectSelection>select {
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    outline: none;
+}
+
 .mid {
     width: min(95%, 1800px);
     height: auto;
@@ -183,10 +253,6 @@ dialog {
 .todoControls input {
     width: 20px;
     height: 20px;
-    color: rgba(255, 255, 255, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-    outline: none;
 }
 
 
